@@ -18,4 +18,4 @@ app.post('/newUser', handleUser.addUser)
 app.post('/loginUser', handleUser.loginUser)
 app.get('/sessionCheck', handleUser.sessionCheck)
 
-ViteExpress.listen(app, port, ()=>{console.log('Server live on ' + port)})
+ViteExpress.listen(app, port, ()=>{console.log('Server live at http://localhost:' + port )})
