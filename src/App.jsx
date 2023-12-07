@@ -5,6 +5,7 @@ import Register from './components/Register';
 import Login from './components/login';
 import Home from './components/Home'
 import SpellBook from './components/spellBook'
+import SpellDetails from './components/spellDetails';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='Register' element={<Register />} />
         <Route path='Login' element={<Login />}/>
         <Route path='spellBook' element={<SpellBook/>}/>
+        <Route path='spellDetails' element={<SpellDetails/>}/>
       </Route>
       </Routes>
     </BrowserRouter>
