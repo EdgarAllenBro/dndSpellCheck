@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { Outlet, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 
 const Layout = () => {
+  const user = useSelector((state)=> state.userName)
 
     const dispatch = useDispatch()
+
 useEffect(()=>{
 axios.get('/sessionCheck').then((res)=>{
     if(res.data.userId){
@@ -22,9 +24,12 @@ axios.get('/sessionCheck').then((res)=>{
     <header className="header">
       <nav className="navBar">
         <ul>
-            {/* <li>
+            {user !== '' ? <li>
                 <Link to='/home'>Home</Link>
-            </li> */}
+            </li> : '' }
+            <li>
+              <Link to='/spellBook'>Spell Book</Link>
+            </li>
             <li>
                 <Link to='/Register'>Register</Link>
             </li>
