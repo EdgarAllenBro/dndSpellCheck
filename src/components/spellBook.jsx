@@ -10,7 +10,8 @@ const [filterSpells ,setFilterSpells] = useState()
 const [filter,setFilter] = useState('')
 const redirect = useNavigate()
 
-const handleFilter = ()=>{
+const handleFilter = (e)=>{
+    e.preventDefault()
     let filteredSpells = allSpells.filter((spell)=>{
         return spell.name.toLowerCase().includes(filter.toLowerCase())
     })
@@ -27,8 +28,10 @@ useEffect(()=>{
     return (
         <>
             <h1>Spell Book</h1>
-            <input onChange={(e)=>setFilter(e.target.value)} value={filter} />
-            <button onClick={handleFilter}>filter</button>
+           <form onSubmit={handleFilter}>
+           <input onChange={(e)=>setFilter(e.target.value)} value={filter} />
+            <button >filter</button>
+           </form>
             <div>{filterSpells ? filterSpells.map((spell)=>{
                 return <p onClick={()=>redirect('/spellDetails',{state:{index:spell.index,name:spell.name}})} className="listSpell" key={spell.index}>{spell.name}</p>
             }):''}</div>
