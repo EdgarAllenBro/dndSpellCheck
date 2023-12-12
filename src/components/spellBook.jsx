@@ -1,7 +1,7 @@
 // import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import axios from "axios"
+import axios, { all } from "axios"
 
 
 const SpellBook = ()=>{
@@ -11,7 +11,10 @@ const [filter,setFilter] = useState('')
 const redirect = useNavigate()
 
 const handleFilter = ()=>{
-    setFilterSpells()
+    let filteredSpells = allSpells.filter((spell)=>{
+        return spell.name.toLowerCase().includes(filter.toLowerCase())
+    })
+    setFilterSpells(filteredSpells)
 }
 
 useEffect(()=>{
@@ -25,6 +28,7 @@ useEffect(()=>{
         <>
             <h1>Spell Book</h1>
             <input onChange={(e)=>setFilter(e.target.value)} value={filter} />
+            <button onClick={handleFilter}>filter</button>
             <div>{filterSpells ? filterSpells.map((spell)=>{
                 return <p onClick={()=>redirect('/spellDetails',{state:{index:spell.index,name:spell.name}})} className="listSpell" key={spell.index}>{spell.name}</p>
             }):''}</div>
