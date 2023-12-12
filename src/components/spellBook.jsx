@@ -1,7 +1,7 @@
 // import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import axios, { all } from "axios"
+import axios from "axios"
 
 
 const SpellBook = ()=>{
