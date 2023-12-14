@@ -19,3 +19,17 @@
 .listSpell:hover{
   transform: scale(1.1);
 }
+.listSpell {
+  margin: 10px;
+}
+/* .spellList {
+  display: flex;
+  flex-wrap: wrap;
+  
+} */
+/* 
+.spellDetails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */

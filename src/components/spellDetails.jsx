@@ -4,23 +4,22 @@ import axios from "axios"
 
 
 
-const SpellDetails = ()=>{
-const location = useLocation()
+const SpellDetails = ({spell})=>{
+    console.log(spell)
 const [spellDetails,setDetails] = useState()
 
 useEffect(()=>{
-    axios.get('https://www.dnd5eapi.co/api/spells/' + location.state.index).then((res)=>{
+    axios.get('https://www.dnd5eapi.co/api/spells/' + spell).then((res)=>{
     setDetails(res.data)
     })
 },[])
 
-    return (
-        <div>{ spellDetails ?  <>
-            <h1>{location.state.name}</h1>  
-            <h3>School: {spellDetails.school.name}</h3> 
-            <p>{spellDetails.desc}</p>
-        </> : ''}</div>
-    )
+    return spellDetails ? 
+    <tr>
+        <td>{spellDetails.name}</td>  
+        <td>{spellDetails.school.name}</td> 
+        <td>{spellDetails.duration}</td>
+    </tr> : '' 
 }
-
+ 
 export default SpellDetails

@@ -2,12 +2,14 @@
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import axios from "axios"
-
+import SpellDetails from "./spellDetails"
 
 const SpellBook = ()=>{
 const [allSpells,setAllSpells] = useState()
 const [filterSpells ,setFilterSpells] = useState()
 const [filter,setFilter] = useState('')
+const [start,setStart] = useState(0)
+const [end,setEnd] = useState(10)
 const redirect = useNavigate()
 
 const handleFilter = (e)=>{
@@ -16,6 +18,18 @@ const handleFilter = (e)=>{
         return spell.name.toLowerCase().includes(filter.toLowerCase())
     })
     setFilterSpells(filteredSpells)
+}
+const handleNext = ()=>{
+    if(start < 309){
+        setStart(start + 10)
+        setEnd(end + 10)
+    }
+}
+const handlePrevious = ()=>{
+    if(start > 0){
+        setStart(start - 10)
+        setEnd(end - 10)
+    }
 }
 
 useEffect(()=>{
@@ -32,9 +46,18 @@ useEffect(()=>{
            <input onChange={(e)=>setFilter(e.target.value)} value={filter} />
             <button >filter</button>
            </form>
-            <div>{filterSpells ? filterSpells.map((spell)=>{
-                return <p onClick={()=>redirect('/spellDetails',{state:{index:spell.index,name:spell.name}})} className="listSpell" key={spell.index}>{spell.name}</p>
-            }):''}</div>
+                <table>
+                    <tr>
+                        <th>Spell</th>
+                        <th>School</th>
+                        <th>Duration</th>
+                    </tr>
+            {filterSpells ? filterSpells.slice(start,end).map((spell)=>{
+                return <SpellDetails key={spell.index} spell={spell.index}/>
+            }):''}
+                </table>
+            <button onClick={handlePrevious}>Previous</button>
+            <button onClick={handleNext}>Next</button>
         </>
     )
 
