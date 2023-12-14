@@ -22,14 +22,7 @@
 .listSpell {
   margin: 10px;
 }
-/* .spellList {
-  display: flex;
-  flex-wrap: wrap;
-  
-} */
-/* 
-.spellDetails {
+.spellSection {
   display: flex;
   justify-content: center;
-  align-items: center;
-} */
+}

@@ -1,5 +1,4 @@
 // import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import SpellDetails from "./spellDetails"
@@ -10,7 +9,6 @@ const [filterSpells ,setFilterSpells] = useState()
 const [filter,setFilter] = useState('')
 const [start,setStart] = useState(0)
 const [end,setEnd] = useState(10)
-const redirect = useNavigate()
 
 const handleFilter = (e)=>{
     e.preventDefault()
@@ -20,7 +18,7 @@ const handleFilter = (e)=>{
     setFilterSpells(filteredSpells)
 }
 const handleNext = ()=>{
-    if(start < 309){
+    if(start < filterSpells.length && filterSpells.length > 10){
         setStart(start + 10)
         setEnd(end + 10)
     }
@@ -39,27 +37,29 @@ useEffect(()=>{
 })
 },[])
 
-    return (
+    return filterSpells ? (
         <>
             <h1>Spell Book</h1>
            <form onSubmit={handleFilter}>
            <input onChange={(e)=>setFilter(e.target.value)} value={filter} />
             <button >filter</button>
            </form>
+           <section className="spellSection">
                 <table>
                     <tr>
                         <th>Spell</th>
                         <th>School</th>
                         <th>Duration</th>
                     </tr>
-            {filterSpells ? filterSpells.slice(start,end).map((spell)=>{
+            {filterSpells.slice(start,end).map((spell)=>{
                 return <SpellDetails key={spell.index} spell={spell.index}/>
-            }):''}
+            })}
                 </table>
+           </section>
             <button onClick={handlePrevious}>Previous</button>
             <button onClick={handleNext}>Next</button>
         </>
-    )
+    ) : ''
 
 }
 
