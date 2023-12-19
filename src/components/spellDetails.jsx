@@ -4,21 +4,21 @@ import axios from "axios"
 
 
 const SpellDetails = ({spell})=>{
-    console.log(spell)
+const [hidden,sethidden] = useState(true)
 const [spellDetails,setDetails] = useState()
+const handleClick = ()=>{
+    sethidden(!hidden)
+}
 
-useEffect(()=>{
-    axios.get('https://www.dnd5eapi.co/api/spells/' + spell).then((res)=>{
-    setDetails(res.data)
-    })
-},[])
-
-    return spellDetails ? 
+return (
     <tr>
-        <td>{spellDetails.name}</td>  
-        <td>{spellDetails.school.name}</td> 
-        <td>{spellDetails.duration}</td>
-    </tr> : '' 
+        <td>{spell.name}</td>
+        <td>{spell.school.name}</td>
+        <td>{spell.casting_time}</td>
+        <td>{spell.level === 0 ? 'Cantrip' : spell.level }</td>
+        {/* <td>{spell.duration}</td> */}
+    </tr>
+)
 }
  
 export default SpellDetails

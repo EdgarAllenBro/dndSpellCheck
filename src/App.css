@@ -25,4 +25,17 @@
 .spellSection {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+.spellDesc {
+}
+
+tr:nth-child(even) {
+  background-color: #535353;
+}
+td{
+  padding: 10px;
+}
+th {
+  background-color: grey;
 }

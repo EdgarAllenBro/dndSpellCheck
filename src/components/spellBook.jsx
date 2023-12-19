@@ -4,10 +4,10 @@ import axios from "axios"
 import SpellDetails from "./spellDetails"
 
 const SpellBook = ()=>{
+const [render,setRender] = useState(true)
 const [allSpells,setAllSpells] = useState()
 const [filterSpells ,setFilterSpells] = useState()
 const [filter,setFilter] = useState('')
-const [start,setStart] = useState(0)
 const [end,setEnd] = useState(10)
 
 const handleFilter = (e)=>{
@@ -17,25 +17,83 @@ const handleFilter = (e)=>{
     })
     setFilterSpells(filteredSpells)
 }
-const handleNext = ()=>{
-    if(start < filterSpells.length && filterSpells.length > 10){
-        setStart(start + 10)
-        setEnd(end + 10)
+
+const handleSort = (e)=>{
+    filterSpells.sort((a,b)=>{
+        if(a.name < b.name){
+            return -1
+        }
+        else{
+            return 1
+        }
+    })
+if(e.target.id === 'school'){ 
+    if(e.target.value === false){
+        filterSpells.sort((a,b)=>{
+            if(a[e.target.id].index < b[e.target.id].index){
+                return 1
+            }
+            else{
+                return -1
+            }
+        })
+    } else {
+        filterSpells.sort((a,b)=>{
+            if(a[e.target.id].index < b[e.target.id].index){
+                return -1
+            }
+            else{
+                return 1
+            }
+        })
+    }
+
+} else {
+    if(e.target.value === false){
+        filterSpells.sort((a,b)=>{
+            if(a[e.target.id] < b[e.target.id]){
+                return 1
+            }
+            else{
+                return -1
+            }
+        })
+    } else {
+        filterSpells.sort((a,b)=>{
+            if(a[e.target.id] < b[e.target.id]){
+                return -1
+            }
+            else{
+                return 1
+            }
+        })
     }
 }
-const handlePrevious = ()=>{
-    if(start > 0){
-        setStart(start - 10)
-        setEnd(end - 10)
+    e.target.value = !e.target.value
+    setRender(!render)
+}
+const handleNext = ()=>{
+    if(0 < filterSpells.length && filterSpells.length > 10){
+        setEnd(end + 10)
     }
 }
 
 useEffect(()=>{
-    axios.get('https://www.dnd5eapi.co/api/spells').then((res)=>{
-    setAllSpells(res.data.results)
-    setFilterSpells(res.data.results)
+    axios.get('http://localhost:8000/allSpells').then((res)=>{
+        let spells = res.data
+        spells.sort((a,b)=>{
+            if(a.name < b.name){
+                return -1
+            }
+            else{
+                return 1
+            }
+        })
+    setAllSpells(spells)
+    setFilterSpells(spells)
 })
 },[])
+
 
     return filterSpells ? (
         <>
@@ -46,18 +104,24 @@ useEffect(()=>{
            </form>
            <section className="spellSection">
                 <table>
+                 <thead>
                     <tr>
-                        <th>Spell</th>
-                        <th>School</th>
-                        <th>Duration</th>
+                        <th value={false} id={'spell'} onClick={handleSort}>Spell</th>
+                        <th value={false} id={'school'} onClick={handleSort}>School</th>
+                        <th value={false} id={'casting_time'} onClick={handleSort}>Cast Time</th>
+                        <th value={false} id={'level'} onClick={handleSort}>Level</th>
+                        {/* <th value={false} id={'duration'}>Duration</th> */}
                     </tr>
-            {filterSpells.slice(start,end).map((spell)=>{
-                return <SpellDetails key={spell.index} spell={spell.index}/>
+                 </thead>
+                 <tbody>
+            {filterSpells.slice(0,end).map((spell)=>{
+                return <SpellDetails key={spell.index} spell={spell}/>
             })}
+                 </tbody>
                 </table>
            </section>
-            <button onClick={handlePrevious}>Previous</button>
-            <button onClick={handleNext}>Next</button>
+            {/* <button onClick={handlePrevious}>Previous</button> */}
+            <button onClick={handleNext}>Show More</button>
         </>
     ) : ''
 
