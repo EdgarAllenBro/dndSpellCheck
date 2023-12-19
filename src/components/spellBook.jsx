@@ -103,22 +103,22 @@ useEffect(()=>{
             <button >filter</button>
            </form>
            <section className="spellSection">
-                <table>
+                <section>
                  <thead>
-                    <tr>
-                        <th value={false} id={'spell'} onClick={handleSort}>Spell</th>
-                        <th value={false} id={'school'} onClick={handleSort}>School</th>
-                        <th value={false} id={'casting_time'} onClick={handleSort}>Cast Time</th>
-                        <th value={false} id={'level'} onClick={handleSort}>Level</th>
+                    <div className="spellTableHead">
+                        <div className="spellHead" value={false} id={'spell'} onClick={handleSort}>Spell</div>
+                        <div className="spellHead" value={false} id={'school'} onClick={handleSort}>School</div>
+                        <div className="spellHead" value={false} id={'casting_time'} onClick={handleSort}>Cast Time</div>
+                        <div className="spellHead" value={false} id={'level'} onClick={handleSort}>Level</div>
                         {/* <th value={false} id={'duration'}>Duration</th> */}
-                    </tr>
+                    </div>
                  </thead>
                  <tbody>
             {filterSpells.slice(0,end).map((spell)=>{
                 return <SpellDetails key={spell.index} spell={spell}/>
             })}
                  </tbody>
-                </table>
+                </section>
            </section>
             {/* <button onClick={handlePrevious}>Previous</button> */}
             <button onClick={handleNext}>Show More</button>

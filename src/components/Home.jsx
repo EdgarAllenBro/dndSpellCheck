@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 const Home = ()=>{
 
 const userName = useSelector((state)=>state.userName)
+const userId = useSelector((state)=>state.userId)
 
 
     return(

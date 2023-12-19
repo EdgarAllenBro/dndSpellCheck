@@ -30,12 +30,22 @@
 .spellDesc {
 }
 
-tr:nth-child(even) {
+.spellBox:nth-child(even) {
   background-color: #535353;
 }
-td{
+.spellCard, .spellTableHead{
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  justify-content: space-evenly;
+}
+.spellDetail, .spellHead{
+  border: 2px black solid;
+  width: 24%;
+  justify-content: center;
   padding: 10px;
 }
-th {
-  background-color: grey;
+.spellDesc{
+  transform: scaley(1);
+  transition: all 1s ease-out ;
 }

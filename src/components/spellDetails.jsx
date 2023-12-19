@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
 
 
 
 const SpellDetails = ({spell})=>{
 const [hidden,sethidden] = useState(true)
-const [spellDetails,setDetails] = useState()
+
 const handleClick = ()=>{
     sethidden(!hidden)
 }
 
+
 return (
-    <tr>
-        <td>{spell.name}</td>
-        <td>{spell.school.name}</td>
-        <td>{spell.casting_time}</td>
-        <td>{spell.level === 0 ? 'Cantrip' : spell.level }</td>
-        {/* <td>{spell.duration}</td> */}
-    </tr>
+
+    <div className="spellBox" onClick={handleClick}>
+        <div className="spellCard">
+            <div className="spellDetail">{spell.name}</div>
+            <div className="spellDetail">{spell.school.name}</div>
+            <div className="spellDetail">{spell.casting_time}</div>
+            <div className="spellDetail">{spell.level === 0 ? 'Cantrip' : spell.level }</div>
+            {/* <td>{spell.duration}</td> */}
+        </div>
+        {!hidden ? <div className="spellDesc">
+            {spell.desc}
+        </div>:''}
+    </div>
+
 )
 }
  
