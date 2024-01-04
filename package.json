@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon server/server.js -w server/server.js -w src",
     "start": "nodemon server/server.js -w server/server.js -w src",
+    "pm2": "pm2 start server/server.js -w server/server.js -w src",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

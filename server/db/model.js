@@ -2,7 +2,7 @@ import { DataTypes , Model } from "sequelize";
 import url from 'url'
 import util from 'util'
 import connectToDB from "./db.js";
-
+import process from "process";
 
 const db = await connectToDB('postgresql:///spellCheck')
 
@@ -11,6 +11,11 @@ class User extends Model {
     [util.inspect.custom]() {
         return this.toJSON();
       }
+}
+class SavedSpells extends Model {
+    [util.inspect.custom](){
+        return this.toJSON();
+    }
 }
 
 User.init(
@@ -41,6 +46,29 @@ User.init(
     }
 )
 
+SavedSpells.init(
+    {
+        savedId:{
+            type: DataTypes.INTEGER,
+            primaryKey:true,
+            autoIncrement:true
+        },
+        spell:{
+            type: DataTypes.STRING
+        }
+    },
+    {
+        modelName: 'savedSpells',
+        sequelize: db
+    }
+)
+    User.SavedSpells = User.hasMany(SavedSpells,
+        {
+            foreignKey:'userId'
+        }
+    )
+
+
 if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
     console.log('Syncing database...');
     await db.sync();
@@ -52,4 +80,4 @@ if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
   }
   
 
-export {User}
+export {User,SavedSpells}
