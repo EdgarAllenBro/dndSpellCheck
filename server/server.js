@@ -25,5 +25,5 @@ app.get('/allSpells', handleSpells.getAllSpells )
 
 
 ViteExpress.listen(app, port, ()=>{
-  handleSpells.serverGetSpells()
+  // handleSpells.serverGetSpells()
   console.log('Server live at http://localhost:' + port )})
