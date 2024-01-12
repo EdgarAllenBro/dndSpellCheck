@@ -103,7 +103,7 @@ useEffect(()=>{
             <button >filter</button>
            </form>
            <section className="spellSection">
-                <section>
+                
                  <thead>
                     <div className="spellTableHead">
                         <div className="spellHead" value={false} id={'spell'} onClick={handleSort}>Spell</div>
@@ -115,12 +115,11 @@ useEffect(()=>{
                  </thead>
                  <tbody>
             {filterSpells.slice(0,end).map((spell)=>{
-                return <SpellDetails key={spell.index} spell={spell}/>
+                return <SpellDetails key={spell.index} spell={spell} parent={'spellBook'}/> 
             })}
                  </tbody>
-                </section>
+                
            </section>
-            {/* <button onClick={handlePrevious}>Previous</button> */}
             <button onClick={handleNext}>Show More</button>
         </>
     ) : ''

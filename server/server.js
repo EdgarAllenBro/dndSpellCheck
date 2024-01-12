@@ -16,13 +16,18 @@ app.use(session({
   saveUninitialized: true,
 }))
 
-  
-
-app.post('/newUser', handleUser.addUser)
-app.post('/loginUser', handleUser.loginUser)
+  //Get requests
 app.get('/sessionCheck', handleUser.sessionCheck)
 app.get('/allSpells', handleSpells.getAllSpells )
+app.get('/savedSpells', handleSpells.savedSpells)
 
+  //Post requests
+app.post('/newUser', handleUser.addUser)
+app.post('/loginUser', handleUser.loginUser)
+app.post('/spell', handleSpells.saveSpell)
+
+  //delete
+app.delete('/spell/:spell', handleSpells.delete)
 
 ViteExpress.listen(app, port, ()=>{
   // handleSpells.serverGetSpells()
