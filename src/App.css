@@ -62,3 +62,10 @@
 button:hover{
   font-weight: 600;
 }
+
+.spellModal{
+  border: black solid 4px;
+  background-color: rgba(143, 143, 143, 0.644);
+  position: absolute;
+  z-index: 2;
+}

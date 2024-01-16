@@ -4,6 +4,7 @@ import SpellDetails from "./spellDetails"
 
 const MySpells  = () => {
     const [mySpells,setAllSpells] = useState([])
+    const [modalList, setModalList] = useState([])
      useEffect(()=>{
         axios.get('http://localhost:8000/savedSpells').then((res)=>{
             setAllSpells(res.data)
@@ -12,6 +13,7 @@ const MySpells  = () => {
 
     return(
         <div>
+        {modalList}
           <section className="spellSection">
                  <thead>
                     <div className="spellTableHead">
@@ -24,7 +26,7 @@ const MySpells  = () => {
                  </thead>
                  <tbody>
             {mySpells.map((spell)=>{
-                return <SpellDetails key={spell.index} spell={spell} parent={'mySpells'}/> 
+                return <SpellDetails addModel={setModalList} modalList={modalList} key={spell.index} spell={spell} parent={'mySpells'}/> 
             })}
                  </tbody>
            </section>

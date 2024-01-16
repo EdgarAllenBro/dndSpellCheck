@@ -1,9 +1,11 @@
 import { useState } from "react"
 import axios from "axios"
+import Draggable from "react-draggable"
+import SpellModel from "./SpellModel"
 
-
-const SpellDetails = ({spell, parent})=>{
+const SpellDetails = ({spell, parent, addModel, modalList})=>{
 const [hidden,sethidden] = useState(true)
+const [hasModal, setHasModal] = useState(false)
 
 const handleClick = ()=>{
     sethidden(!hidden)
@@ -14,6 +16,12 @@ let body = {spell:spell.index}
 }
 const removeSpell = ()=>{
         axios.delete('/spell/'+spell.index)
+}
+const createModal = ()=>{
+    if(!hasModal){
+        addModel(modalList.concat(<SpellModel spell={spell}/>))
+        setHasModal(true)
+    }
 }
 
 return (
@@ -32,8 +40,12 @@ return (
          </p>
          {parent === 'spellBook' ? 
          <button className="saveBtn" onClick={saveSpell} >Save Spell</button>
-         : <button className="removeBtn" onClick={removeSpell} >Remove</button>}
-        </div>:''}
+         : <div className="spellBtns">
+         <button className="removeBtn" onClick={removeSpell}>Remove</button>
+         <button onClick={createModal}>Spell Roller</button>
+         </div>}
+        </div>:''
+        }
     </div>
 
 )
