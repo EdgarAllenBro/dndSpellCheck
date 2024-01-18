@@ -38,7 +38,7 @@ if(username === '' || password === ''){
 }
     return (
     <div>
-        <form onSubmit={submitForm}>
+        <form className="register_form" onSubmit={submitForm}>
             <input value={username} placeholder="Enter a Username" onChange={(e)=>{setUsername(e.target.value)}} />
             <input value={email} placeholder="Enter Email" onChange={(e)=>{ setEmail(e.target.value)}} />
             <input value={password} placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}} type={showPass ? 'text' : 'password'}  />

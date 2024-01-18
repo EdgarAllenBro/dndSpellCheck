@@ -9,6 +9,7 @@ import SpellBook from './components/spellBook'
 import SpellDetails from './components/spellDetails';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
+import './spells.css'
 
 function App() {
 

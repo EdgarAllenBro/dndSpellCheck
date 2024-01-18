@@ -24,25 +24,21 @@ const Layout = () => {
 
   return (
     <>
-    <header className="header">
-      <nav className="navBar">
-        <ul>
-            {user !== '' ? <li><Link to='/home'>Home</Link></li> : '' }
-            {user !== '' ? <li> <Link to='/mySpells'>My Saved Spells</Link></li> : ''}
+        <ul className="navList">
+            {user !== '' ? <li><Link className="link" to='/home'>Home</Link></li> : '' }
+            {user !== '' ? <li> <Link className="link" to='/mySpells'>My Saved Spells</Link></li> : ''}
             <li>
-              <Link to='/spellBook'>Spell Book</Link>
+              <Link className="link" to='/spellBook'>Spell Book</Link>
             </li>
             <li>
-                <Link to='/Register'>Register</Link>
+                <Link className="link" to='/Register'>Register</Link>
             </li>
             <li>
-                <Link to='/Login'>Login</Link>
+                <Link className="link" to='/Login'>Login</Link>
             </li>
       
         </ul>
           
-      </nav>
-      </header>
       <body>
       <Outlet />
       </body>

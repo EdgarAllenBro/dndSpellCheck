@@ -5,6 +5,8 @@ import SpellDetails from "./spellDetails"
 const MySpells  = () => {
     const [mySpells,setAllSpells] = useState([])
     const [modalList, setModalList] = useState([])
+
+
      useEffect(()=>{
         axios.get('http://localhost:8000/savedSpells').then((res)=>{
             setAllSpells(res.data)

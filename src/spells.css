@@ -1,0 +1,53 @@
+                /* spells list css */
+  .listSpell:hover{
+    transform: scale(1.1);
+  }
+  .listSpell {
+    margin: 10px;
+  }
+  .spellSection {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .spellBox:nth-child(even) {
+    background-color: #434343;
+  }
+  .spellCard, .spellTableHead{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .spellCard:hover{
+    font-weight: 700;
+  }
+  .spellDetail, .spellHead{
+    border: 2px black solid;
+    width: 23vw;
+    justify-content: center;
+    padding: 10px;
+  }
+                /* end spells list */
+
+                /* spell details and modal css */
+  .spellDesc{
+    transform: scaley(1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .saveBtn{
+    width: 15%;
+  }
+  button:hover{
+    font-weight: 600;
+  }
+
+  .spellModal{
+    border: black solid 4px;
+    background-color: rgba(143, 143, 143, 0.644);
+    position: absolute;
+    z-index: 2;
+  }
+                /* end details and modal css */

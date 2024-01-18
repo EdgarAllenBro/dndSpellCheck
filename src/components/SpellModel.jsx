@@ -4,7 +4,7 @@ import Draggable from "react-draggable"
 
 const SpellModel = ({spell})=>{
     //grab the object keeping track of spell slot levels and dice used at each level
-    let spellSlotLevels = spell.damage.damage_at_slot_level
+    let spellSlotLevels = spell.damage.damage_at_slot_level || spell.damage.damage_at_character_level
     //state value used to display result from a dice roll
     const [results,setResults] = useState(0)
     //state value to keep track of current spell level selected
@@ -36,6 +36,7 @@ const SpellModel = ({spell})=>{
                 {spell.name}
                 <p>{results}</p>
                 <p>{spellSlotLevels[spellSlot]}</p>
+                {spell.damage.damage_at_character_level?<lable>Char Level</lable> : <lable>Spell Slot</lable>}
                 <select onChange={(e)=>setSpellSlot(e.target.value)} value={spellSlot}>
                     {Object.keys(spellSlotLevels).map((e)=>{
                        return <option key={e} value={e}>{e}</option>})}
