@@ -30,8 +30,8 @@ axios.post('/loginUser', user).then((res)=>{
     return (
     <div>
         <form onSubmit={submitForm}>
-            <input value={username} placeholder="Enter a Username" onChange={(e)=>{setUsername(e.target.value)}} />
-            <input value={password} placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}} type="password"  />
+            <input id="usernameInput" value={username} placeholder="Username" onChange={(e)=>{setUsername(e.target.value)}} />
+            <input id="passwordInput" value={password} placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}} type="password"  />
         <button >Login</button>
         </form>
     </div>

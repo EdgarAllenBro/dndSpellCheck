@@ -18,7 +18,7 @@ app.use(session({
 
   //Get requests
 app.get('/sessionCheck', handleUser.sessionCheck)
-app.get('/allSpells', handleSpells.getAllSpells )
+app.get('/allSpells', handleSpells.getAllSpells)
 app.get('/savedSpells', handleSpells.savedSpells)
 
   //Post requests
